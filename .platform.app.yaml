@@ -4,6 +4,12 @@ type: php:8.1
 
 dependencies:
     php:
+        require:
+            "platformsh/client": "2.x-dev"
+        repositories:
+            type: vcs
+            url: git@github.com:atournikate/thisisatest.git
+        type: 'php:8.1'
         composer/composer: "^2"
 
 runtime:
@@ -32,6 +38,11 @@ web:
             root: "public"
             expires: 1h
             passthru: "/index.php"
+    commands:
+        start: php run.php
+        upstream:
+            socket_family: tcp
+            protocol: http
 
 mounts:
     "/var": { source: local, source_path: var }
